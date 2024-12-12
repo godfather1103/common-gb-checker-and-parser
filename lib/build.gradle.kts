@@ -30,7 +30,7 @@ dependencies {
 }
 
 group = "io.github.godfather1103"
-version = "1.0.0"
+version = "1.0.1"
 description = "按照GB提取跟解析内容的库"
 
 // Apply a specific Java toolchain to ease working on different environments.
