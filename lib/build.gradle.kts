@@ -74,6 +74,7 @@ publishing {
             url.set("https://github.com/godfather1103/common-gb-checker-and-parser")
             name.set("common-gb-checker-and-parser")
             description.set(project.description)
+            artifactId = "common-gb-checker-and-parser"
             scm {
                 url.set("https://github.com/godfather1103/common-gb-checker-and-parser")
                 connection.set("scm:git:https://github.com/godfather1103/common-gb-checker-and-parser.git")
