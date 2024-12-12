@@ -86,7 +86,7 @@ class CheckAndParseFactoryTest {
                 checkAndParse.check("12451341234"),
                 "这个应该是错误的"
         );
-        System.out.println(checkAndParse.parse("13451341234\n8613451341234\n008613451341234\n+8613451341234\n"));
+        System.out.println(checkAndParse.parse("13451341234\n8613451341234\n008613451341234\n+8613451341234\n1+8613451341234\n"));
     }
 
 }

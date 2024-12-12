@@ -43,7 +43,7 @@ public class GongMinShenFenHaoMa extends BaseCheckAndParse {
 
     @Override
     public String regex() {
-        return "\\d{10}(0[1-9]|1[0-2])[0-3]\\d{4}[\\dXx]";
+        return "(?<!\\d)\\d{10}(0[1-9]|1[0-2])[0-3]\\d{4}[\\dXx](?![\\dxX])";
     }
 
     /**

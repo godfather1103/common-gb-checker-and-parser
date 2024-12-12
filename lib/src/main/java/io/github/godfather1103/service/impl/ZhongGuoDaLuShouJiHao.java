@@ -17,7 +17,7 @@ import io.github.godfather1103.service.BaseCheckAndParse;
 public class ZhongGuoDaLuShouJiHao extends BaseCheckAndParse {
     @Override
     public String regex() {
-        return "((00|\\+)?86)?1[3-9]\\d{9}";
+        return "(?<!\\d)((00|\\+)?86)?1[3-9]\\d{9}(?![\\dxX])";
     }
 
     @Override
