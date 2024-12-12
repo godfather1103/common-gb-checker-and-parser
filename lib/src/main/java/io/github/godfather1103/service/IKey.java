@@ -1,4 +1,6 @@
-package io.github.godfather1103;
+package io.github.godfather1103.service;
+
+import java.io.Serializable;
 
 /**
  * <p>Title:        Godfather1103's Github</p>
@@ -11,15 +13,23 @@ package io.github.godfather1103;
  * @date 创建时间：2024/12/12 10:38
  * @since 1.0
  */
-public interface IChecker extends IKey {
+public interface IKey extends Serializable {
 
     /**
-     * 检测数据是否符合标准<BR>
+     * desc<BR>
      *
-     * @param content 参数
      * @return 结果
      * @author 作者: Jack Chu E-mail: chuchuanbao@gmail.com
-     * @date 创建时间：2024/12/12 10:38
+     * @date 创建时间：2024/12/11 18:46
      */
-    boolean check(String content);
+    String desc();
+
+    /**
+     * desc<BR>
+     *
+     * @return 结果
+     * @author 作者: Jack Chu E-mail: chuchuanbao@gmail.com
+     * @date 创建时间：2024/12/11 18:46
+     */
+    String key();
 }

@@ -16,6 +16,12 @@ repositories {
 }
 
 dependencies {
+    api(libs.slf4j.api)
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+    testCompileOnly(libs.lombok)
+    testAnnotationProcessor(libs.lombok)
+
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

@@ -1,4 +1,6 @@
-package io.github.godfather1103;
+package io.github.godfather1103.service;
+
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,6 +9,18 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * <p>Title:        Godfather1103's Github</p>
+ * <p>Copyright:    Copyright (c) 2024</p>
+ * <p>Company:      <a href="https://github.com/godfather1103">https://github.com/godfather1103</a></p>
+ * 类描述：
+ *
+ * @author 作者: Jack Chu E-mail: chuchuanbao@gmail.com
+ * @version 1.0
+ * @date 创建时间：2024/12/12 11:39
+ * @since 1.0
+ */
+@Slf4j
 public abstract class BaseCheckAndParse implements IChecker, IParser {
 
     private Pattern pattern;
@@ -28,7 +42,7 @@ public abstract class BaseCheckAndParse implements IChecker, IParser {
      * @author 作者: Jack Chu E-mail: chuchuanbao@gmail.com
      * @date 创建时间：2024/12/12 10:54
      */
-    public abstract Boolean doGuoBiaoCheck(String content);
+    protected abstract Boolean doGuoBiaoCheck(String content);
 
     /**
      * getPattern<BR>

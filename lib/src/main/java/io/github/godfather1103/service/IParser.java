@@ -1,4 +1,4 @@
-package io.github.godfather1103;
+package io.github.godfather1103.service;
 
 import java.util.List;
 
