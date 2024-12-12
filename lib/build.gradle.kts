@@ -8,6 +8,8 @@
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
+    `maven-publish`
+    signing
 }
 
 repositories {
@@ -27,14 +29,74 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
+group = "io.github.godfather1103"
+version = "1.0.0"
+description = "按照GB提取跟解析内容的库"
+
 // Apply a specific Java toolchain to ease working on different environments.
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(8)
-    }
+    withJavadocJar()
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType<Javadoc> {
+    options.encoding = "UTF-8"
+    (options as StandardJavadocDocletOptions).tags = listOf("date")
+}
+
+publishing {
+    repositories {
+        maven {
+            val releasesRepoUrl = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            val snapshotsRepoUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            url = if (version.toString().uppercase().contains("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
+            credentials {
+                username = "${property("ossrhUsername")}"
+                password = "${property("ossrhPassword")}"
+            }
+        }
+    }
+
+    publications.create<MavenPublication>("mavenJava") {
+        from(components["java"])
+        pom {
+            url.set("https://github.com/godfather1103/common-gb-checker-and-parser")
+            name.set("common-gb-checker-and-parser")
+            description.set(project.description)
+            scm {
+                url.set("https://github.com/godfather1103/common-gb-checker-and-parser")
+                connection.set("scm:git:https://github.com/godfather1103/common-gb-checker-and-parser.git")
+                developerConnection.set("scm:git:https://github.com/godfather1103/common-gb-checker-and-parser.git")
+            }
+            licenses {
+                license {
+                    name.set("The Apache Software License, Version 2.0")
+                    url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                    distribution.set("repo")
+                }
+            }
+            developers {
+                developer {
+                    id.set("godfather1103")
+                    name.set("Jack Chu")
+                    email.set("chuchuanbao@gmail.com")
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign(publishing.publications["mavenJava"])
 }
