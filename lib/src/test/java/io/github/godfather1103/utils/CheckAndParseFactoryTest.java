@@ -11,7 +11,8 @@ class CheckAndParseFactoryTest {
 
     @Test
     void testZjhm() {
-        BaseCheckAndParse checkAndParse = CheckAndParseFactory.find(Constant.CHECK_ZJHM).orElseThrow(RuntimeException::new);
+        BaseCheckAndParse checkAndParse = CheckAndParseFactory.find(Constant.CHECK_ZJHM)
+                .orElseThrow(RuntimeException::new);
         // 妈祖身份证
         assertTrue(
                 checkAndParse.check("350321096003237001"),
@@ -36,6 +37,36 @@ class CheckAndParseFactoryTest {
 
         System.out.println(checkAndParse.parse("说来很多人怕是不知道！妈祖不仅能够乘飞机、坐动车，人家还有身份证！\n" +
                 "据南方都市报报道，妈祖的身份证号是350321096003237001，姓名为林默。\n"));
+    }
+
+    @Test
+    void testHaoPai(){
+        BaseCheckAndParse checkAndParse = CheckAndParseFactory.find(Constant.CHECK_JDCHP)
+                .orElseThrow(RuntimeException::new);
+
+        assertTrue(
+                checkAndParse.check("川A10TF1"),
+                "机动车川A10TF1"
+        );
+
+        assertTrue(
+                checkAndParse.check("川A10TF11"),
+                "机动车川A10TF11"
+        );
+
+        assertTrue(
+                checkAndParse.check("川A10TF学"),
+                "机动车川A10TF学"
+        );
+
+        assertTrue(
+                checkAndParse.check("川A10TF警"),
+                "机动车川A10TF警"
+        );
+        assertFalse(
+                checkAndParse.check("川A10TF警1"),
+                "这个应该是错误的车牌"
+        );
     }
 
 }

@@ -15,4 +15,5 @@ public class Constant {
 
     public static final String CHECK_ZJHM = "zjhm";
     public static final String CHECK_XZQH = "xzqh";
+    public static final String CHECK_JDCHP = "jdchp";
 }
