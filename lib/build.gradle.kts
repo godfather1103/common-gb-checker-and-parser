@@ -62,8 +62,8 @@ publishing {
             val snapshotsRepoUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
             url = if (version.toString().uppercase().contains("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
             credentials {
-                username = "${property("ossrhUsername")}"
-                password = "${property("ossrhPassword")}"
+                username = "${property("ossrhTokenUsername")}"
+                password = "${property("ossrhTokenPassword")}"
             }
         }
     }
