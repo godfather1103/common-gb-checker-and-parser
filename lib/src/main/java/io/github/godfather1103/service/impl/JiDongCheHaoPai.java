@@ -27,7 +27,7 @@ public class JiDongCheHaoPai extends BaseCheckAndParse {
 
     @Override
     public String desc() {
-        return "GA 36-2018";
+        return "机动车号牌（GA 36-2018）";
     }
 
     @Override

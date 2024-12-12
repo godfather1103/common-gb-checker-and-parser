@@ -25,9 +25,23 @@ public class CheckAndParseFactory {
         log.info("开始通过SPI加载BaseCheckAndParse.class");
         ServiceLoader<BaseCheckAndParse> loader = ServiceLoader.load(BaseCheckAndParse.class);
         for (BaseCheckAndParse checkAndParse : loader) {
-            log.info("加载了[{}]", checkAndParse.getClass().getName());
+            log.info("加载了[{}][{}]", checkAndParse.desc(), checkAndParse.getClass().getName());
             PARSER_LIST.add(checkAndParse);
         }
+    }
+
+    /**
+     * findOpt<BR>
+     *
+     * @param key 参数
+     * @return 结果
+     * @author 作者: Jack Chu E-mail: chuchuanbao@gmail.com
+     * @date 创建时间：2024/12/12 14:08
+     */
+    public static Optional<BaseCheckAndParse> findOpt(String key) {
+        return PARSER_LIST.stream()
+                .filter(it -> Objects.equals(it.key(), key))
+                .findFirst();
     }
 
     /**
@@ -36,11 +50,31 @@ public class CheckAndParseFactory {
      * @param key 参数
      * @return 结果
      * @author 作者: Jack Chu E-mail: chuchuanbao@gmail.com
-     * @date 创建时间：2024/12/12 14:08
+     * @date 创建时间：2024/12/12 17:14
      */
-    public static Optional<BaseCheckAndParse> find(String key) {
-        return PARSER_LIST.stream()
-                .filter(it -> Objects.equals(it.key(), key))
-                .findFirst();
+    public static BaseCheckAndParse find(String key) {
+        return find(key, true);
+    }
+
+    /**
+     * find<BR>
+     *
+     * @param key       参数
+     * @param needExist 参数
+     * @return 结果
+     * @author 作者: Jack Chu E-mail: chuchuanbao@gmail.com
+     * @date 创建时间：2024/12/12 17:14
+     */
+    public static BaseCheckAndParse find(String key, Boolean needExist) {
+        Optional<BaseCheckAndParse> opt = findOpt(key);
+        if (opt.isPresent()) {
+            return opt.get();
+        } else {
+            if (needExist) {
+                throw new IllegalArgumentException("未找到校验器" + key);
+            } else {
+                return null;
+            }
+        }
     }
 }

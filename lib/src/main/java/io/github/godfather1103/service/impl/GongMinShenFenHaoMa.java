@@ -89,7 +89,7 @@ public class GongMinShenFenHaoMa extends BaseCheckAndParse {
     protected Boolean doGuoBiaoCheck(String content) {
         String xzqh = content.substring(0, 6);
         // 行政区划不符合标准
-        if (!CheckAndParseFactory.find(Constant.CHECK_XZQH)
+        if (!CheckAndParseFactory.findOpt(Constant.CHECK_XZQH)
                 .orElseThrow(() -> new IllegalArgumentException("未找到校验器"))
                 .check(xzqh)) {
             return false;
@@ -105,7 +105,7 @@ public class GongMinShenFenHaoMa extends BaseCheckAndParse {
 
     @Override
     public String desc() {
-        return "GB 11643-1999";
+        return "公民身份号码(GB 11643-1999)";
     }
 
     @Override
