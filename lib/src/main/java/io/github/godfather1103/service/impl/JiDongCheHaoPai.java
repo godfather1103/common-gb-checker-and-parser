@@ -17,7 +17,7 @@ import io.github.godfather1103.service.BaseCheckAndParse;
 public class JiDongCheHaoPai extends BaseCheckAndParse {
     @Override
     public String regex() {
-        return "([京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼渝川贵云藏陕甘青宁新]([A-H]|[J-N]|[P-Z])(([A-H]|[J-N]|[P-Z])|\\d){4,5}(([A-H]|[J-N]|[P-Z])|\\d|[挂学警港澳]))|([京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼渝川贵云藏陕甘青宁新]((\\d{5}领)|(领\\d{5})))|(\\d{6}使)";
+        return "([京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼渝川贵云藏陕甘青宁新]([A-HJ-NP-Z])(([A-HJ-NP-Z])|\\d){4,5}([A-HJ-NP-Z\\d挂学警港澳])(?![A-HJ-NP-Z\\d挂学警港澳]))|([京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼渝川贵云藏陕甘青宁新]((\\d{5}领(?![领]))|(领\\d{5}(?![\\d]))))|((?<!\\d)\\d{6}使)";
     }
 
     @Override
