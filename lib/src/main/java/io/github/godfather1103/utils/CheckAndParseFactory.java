@@ -1,9 +1,13 @@
 package io.github.godfather1103.utils;
 
+import io.github.godfather1103.constant.Constant;
 import io.github.godfather1103.service.BaseCheckAndParse;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.ServiceLoader;
 
 /**
  * <p>Title:        Godfather1103's Github</p>
@@ -19,14 +23,26 @@ import java.util.*;
 @Slf4j
 public class CheckAndParseFactory {
 
-    private static final List<BaseCheckAndParse> PARSER_LIST = new ArrayList<>(0);
+    private static final Map<String, BaseCheckAndParse> PARSER_MAP = new HashMap<>(0);
 
     static {
         log.info("开始通过SPI加载BaseCheckAndParse.class");
         ServiceLoader<BaseCheckAndParse> loader = ServiceLoader.load(BaseCheckAndParse.class);
         for (BaseCheckAndParse checkAndParse : loader) {
             log.info("加载了[{}][{}]", checkAndParse.desc(), checkAndParse.getClass().getName());
-            PARSER_LIST.add(checkAndParse);
+            PARSER_MAP.put(checkAndParse.key(), checkAndParse);
+        }
+        if (!PARSER_MAP.containsKey(Constant.CHECK_PERSON)
+                && PARSER_MAP.containsKey(Constant.CHECK_ZJHM)) {
+            PARSER_MAP.put(Constant.CHECK_PERSON, PARSER_MAP.get(Constant.CHECK_ZJHM));
+        }
+        if (!PARSER_MAP.containsKey(Constant.CHECK_CAR)
+                && PARSER_MAP.containsKey(Constant.CHECK_JDCHP)) {
+            PARSER_MAP.put(Constant.CHECK_CAR, PARSER_MAP.get(Constant.CHECK_JDCHP));
+        }
+        if (!PARSER_MAP.containsKey(Constant.CHECK_PHONE)
+                && PARSER_MAP.containsKey(Constant.CHECK_ZGDLSHJ)) {
+            PARSER_MAP.put(Constant.CHECK_PHONE, PARSER_MAP.get(Constant.CHECK_ZGDLSHJ));
         }
     }
 
@@ -39,9 +55,7 @@ public class CheckAndParseFactory {
      * @date 创建时间：2024/12/12 14:08
      */
     public static Optional<BaseCheckAndParse> findOpt(String key) {
-        return PARSER_LIST.stream()
-                .filter(it -> Objects.equals(it.key(), key))
-                .findFirst();
+        return Optional.ofNullable(PARSER_MAP.get(key));
     }
 
     /**

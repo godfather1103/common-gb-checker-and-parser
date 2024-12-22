@@ -14,7 +14,10 @@ package io.github.godfather1103.constant;
 public class Constant {
 
     public static final String CHECK_ZJHM = "zjhm";
+    public static final String CHECK_PERSON = "person";
     public static final String CHECK_XZQH = "xzqh";
     public static final String CHECK_JDCHP = "jdchp";
+    public static final String CHECK_CAR = "car";
     public static final String CHECK_ZGDLSHJ = "zgdlsjh";
+    public static final String CHECK_PHONE = "phone";
 }
