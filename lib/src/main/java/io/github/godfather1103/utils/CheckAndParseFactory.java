@@ -4,10 +4,8 @@ import io.github.godfather1103.constant.Constant;
 import io.github.godfather1103.service.BaseCheckAndParse;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.ServiceLoader;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * <p>Title:        Godfather1103's Github</p>
@@ -90,5 +88,27 @@ public class CheckAndParseFactory {
                 return null;
             }
         }
+    }
+
+    /**
+     * findAllMap<BR>
+     *
+     * @return 结果
+     * @author 作者: Jack Chu E-mail: chuchuanbao@gmail.com
+     * @date 创建时间：2024/12/24 10:06
+     */
+    public static Map<String, BaseCheckAndParse> findAllMap() {
+        return PARSER_MAP;
+    }
+
+    /**
+     * findAll<BR>
+     *
+     * @return 结果
+     * @author 作者: Jack Chu E-mail: chuchuanbao@gmail.com
+     * @date 创建时间：2024/12/24 10:05
+     */
+    public static List<BaseCheckAndParse> findAll() {
+        return PARSER_MAP.values().stream().distinct().collect(Collectors.toList());
     }
 }
