@@ -19,6 +19,7 @@ repositories {
 
 dependencies {
     api(libs.slf4j.api)
+    implementation(libs.logback.classic)
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
     testCompileOnly(libs.lombok)
