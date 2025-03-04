@@ -17,7 +17,7 @@ import io.github.godfather1103.service.BaseCheckAndParse;
 public class XingZhengQuHuaDaiMa extends BaseCheckAndParse {
     @Override
     public String regex() {
-        return "(?<!\\d)(1[1-5]|2[1-3]|3[1-7]|4[1-6]|5[0-4]|6[1-6]|71|8[1-2])\\d{4}(?![\\dxX])";
+        return "(?<!\\d)(1[1-5]|2[1-3]|3[1-7]|4[1-6]|5[0-4]|6[1-6]|71|8[1-3])\\d{4}(?![\\dxX])";
     }
 
     @Override
