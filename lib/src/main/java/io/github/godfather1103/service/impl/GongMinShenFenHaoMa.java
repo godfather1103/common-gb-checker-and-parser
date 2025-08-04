@@ -46,6 +46,16 @@ public class GongMinShenFenHaoMa extends BaseCheckAndParse {
         return "(?<!\\d)\\d{10}(0[1-9]|1[0-2])[0-3]\\d{4}[\\dXx](?![\\dxX])";
     }
 
+    @Override
+    public String desensitizationFormat() {
+        return "$1**********$2";
+    }
+
+    @Override
+    public String desensitizationRegex() {
+        return "(\\d{4})\\d{10}(\\d{3}[\\dxX])";
+    }
+
     /**
      * isValidDate<BR>
      *

@@ -21,6 +21,16 @@ public class ZhongGuoDaLuShouJiHao extends BaseCheckAndParse {
     }
 
     @Override
+    public String desensitizationRegex() {
+        return "(\\d{3})\\d+(\\d{4})";
+    }
+
+    @Override
+    public String desensitizationFormat() {
+        return "$1****$2";
+    }
+
+    @Override
     protected Boolean doGuoBiaoCheck(String content) {
         return content.matches(regex());
     }

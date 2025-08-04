@@ -35,6 +35,28 @@ public abstract class BaseCheckAndParse implements IChecker, IParser {
     public abstract String regex();
 
     /**
+     * desensitizationRegex<BR>
+     *
+     * @return 结果
+     * @author 作者: chu.chuanbao E-mail: chu.chuanbao@trs.com.cn
+     * @date 创建时间：2025/8/4 11:14
+     */
+    public String desensitizationRegex() {
+        return regex();
+    }
+
+    /**
+     * desensitizationFormat<BR>
+     *
+     * @return 结果
+     * @author 作者: Jack Chu E-mail: chuchuanbao@gmail.com
+     * @date 创建时间：2025/8/4 11:17
+     */
+    public String desensitizationFormat() {
+        return "*";
+    }
+
+    /**
      * 数据符合基础正则之后进行国标校验<BR>
      *
      * @param content 参数
@@ -88,5 +110,21 @@ public abstract class BaseCheckAndParse implements IChecker, IParser {
         }
         // 进行国标校验
         return doGuoBiaoCheck(content);
+    }
+
+    @Override
+    public String desensitizationData(String content) {
+        return desensitizationData(content, false);
+    }
+
+    @Override
+    public String desensitizationData(String content, boolean notCheck) {
+        if (!notCheck && !check(content)) {
+            throw new RuntimeException("待脱敏的数据异常");
+        }
+        if (Objects.isNull(content)) {
+            return null;
+        }
+        return content.replaceFirst(desensitizationRegex(), desensitizationFormat());
     }
 }

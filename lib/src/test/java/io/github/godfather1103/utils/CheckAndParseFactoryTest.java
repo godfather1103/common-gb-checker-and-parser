@@ -2,6 +2,7 @@ package io.github.godfather1103.utils;
 
 import io.github.godfather1103.constant.Constant;
 import io.github.godfather1103.service.BaseCheckAndParse;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,6 +18,9 @@ class CheckAndParseFactoryTest {
                 checkAndParse.check("350321096003237001"),
                 "妈祖身份证校验出错了"
         );
+        System.out.println("350321096003237001:" + checkAndParse.desensitizationData("350321096003237001"));
+        Assertions.assertThrows(RuntimeException.class, () -> System.out.println("null:" + checkAndParse.desensitizationData(null)));
+        System.out.println("null:" + checkAndParse.desensitizationData(null, true));
         assertTrue(
                 checkAndParse.check("440524188001010014"),
                 "身份校验出错"
@@ -44,6 +48,7 @@ class CheckAndParseFactoryTest {
                 checkAndParse.check("川A10TF1"),
                 "机动车川A10TF1"
         );
+        System.out.println("川A10TF1:" + checkAndParse.desensitizationData("川A10TF1"));
         assertTrue(
                 checkAndParse.check("川A10TF11"),
                 "机动车川A10TF11"
@@ -70,22 +75,28 @@ class CheckAndParseFactoryTest {
                 checkAndParse.check("13451341234"),
                 "13451341234"
         );
+        System.out.println("13451341234:" + checkAndParse.desensitizationData("13451341234"));
         assertTrue(
                 checkAndParse.check("8613451341234"),
                 "8613451341234"
         );
+        System.out.println("8613451341234:" + checkAndParse.desensitizationData("8613451341234"));
         assertTrue(
                 checkAndParse.check("008613451341234"),
                 "008613451341234"
         );
+        System.out.println("008613451341234:" + checkAndParse.desensitizationData("008613451341234"));
         assertTrue(
                 checkAndParse.check("+8613451341234"),
                 "+8613451341234"
         );
+        System.out.println("+8613451341234:" + checkAndParse.desensitizationData("+8613451341234"));
         assertFalse(
                 checkAndParse.check("12451341234"),
                 "这个应该是错误的"
         );
+        Assertions.assertThrows(RuntimeException.class, () -> checkAndParse.desensitizationData("12451341234"));
+        System.out.println("12451341234:" + checkAndParse.desensitizationData("12451341234",true));
         System.out.println(checkAndParse.parse("13451341234\n8613451341234\n008613451341234\n+8613451341234\n1+8613451341234\n"));
     }
 
