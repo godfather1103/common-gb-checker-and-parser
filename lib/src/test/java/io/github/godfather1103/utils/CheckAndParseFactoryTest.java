@@ -96,8 +96,14 @@ class CheckAndParseFactoryTest {
                 "这个应该是错误的"
         );
         Assertions.assertThrows(RuntimeException.class, () -> checkAndParse.desensitizationData("12451341234"));
-        System.out.println("12451341234:" + checkAndParse.desensitizationData("12451341234",true));
+        System.out.println("12451341234:" + checkAndParse.desensitizationData("12451341234", true));
         System.out.println(checkAndParse.parse("13451341234\n8613451341234\n008613451341234\n+8613451341234\n1+8613451341234\n"));
+    }
+
+    @Test
+    void testXzqh() {
+        BaseCheckAndParse checkAndParse = CheckAndParseFactory.find(Constant.CHECK_XZQH);
+        System.out.println(checkAndParse.desensitizationData("510802"));
     }
 
 }

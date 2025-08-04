@@ -113,7 +113,7 @@ public abstract class BaseCheckAndParse implements IChecker, IParser {
     }
 
     @Override
-    public String desensitizationData(String content) {
+    public final String desensitizationData(String content) {
         return desensitizationData(content, false);
     }
 

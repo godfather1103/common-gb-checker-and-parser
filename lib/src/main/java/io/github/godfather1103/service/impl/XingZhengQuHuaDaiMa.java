@@ -26,6 +26,16 @@ public class XingZhengQuHuaDaiMa extends BaseCheckAndParse {
     }
 
     @Override
+    public String desensitizationRegex() {
+        return "(\\d{4})\\d{2}";
+    }
+
+    @Override
+    public String desensitizationFormat() {
+        return "$1**";
+    }
+
+    @Override
     public String desc() {
         return "中华人民共和国行政区划代码(GB/T 2260-2007)";
     }

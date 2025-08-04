@@ -26,6 +26,16 @@ public class JiDongCheHaoPai extends BaseCheckAndParse {
     }
 
     @Override
+    public String desensitizationRegex() {
+        return "(.{2}).+";
+    }
+
+    @Override
+    public String desensitizationFormat() {
+        return "$1*****";
+    }
+
+    @Override
     public String desc() {
         return "机动车号牌（GA 36-2018）";
     }
