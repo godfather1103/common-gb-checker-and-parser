@@ -10,6 +10,7 @@ plugins {
     `java-library`
     `maven-publish`
     signing
+    id("com.vanniktech.maven.publish") version "0.34.0"
 }
 
 repositories {
@@ -54,6 +55,36 @@ tasks.withType<JavaCompile> {
 tasks.withType<Javadoc> {
     options.encoding = "UTF-8"
     (options as StandardJavadocDocletOptions).tags = listOf("date")
+}
+
+mavenPublishing {
+    publishToMavenCentral(automaticRelease = true)
+    signAllPublications()
+    coordinates(groupId = group.toString(), artifactId = "common-gb-checker-and-parser", version = version.toString())
+    pom {
+        url.set("https://github.com/godfather1103/common-gb-checker-and-parser")
+        name.set("common-gb-checker-and-parser")
+        description.set(project.description)
+        scm {
+            url.set("https://github.com/godfather1103/common-gb-checker-and-parser")
+            connection.set("scm:git:https://github.com/godfather1103/common-gb-checker-and-parser.git")
+            developerConnection.set("scm:git:https://github.com/godfather1103/common-gb-checker-and-parser.git")
+        }
+        licenses {
+            license {
+                name.set("The Apache Software License, Version 2.0")
+                url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                distribution.set("repo")
+            }
+        }
+        developers {
+            developer {
+                id.set("godfather1103")
+                name.set("Jack Chu")
+                email.set("chuchuanbao@gmail.com")
+            }
+        }
+    }
 }
 
 publishing {
